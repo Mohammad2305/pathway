@@ -18,8 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         HomeScreen(
           userName: "Mohammed",
-          userImage:
-              "https://i.pinimg.com/736x/b1/5c/8a/b15c8a9f38805538eb268b04048a3308.jpg",
+          userImage: "https://i.pinimg.com/1200x/b5/7f/fa/b57ffaa0dae9b4c09dac2018e3a6e7a4.jpg",
         ),
       );
     });

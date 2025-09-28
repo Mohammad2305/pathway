@@ -25,7 +25,13 @@ class AppTextStyles{
   );
 
   static TextStyle actions = TextStyle(
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w500,
   );
+
+  static TextStyle actionButton = TextStyle(color: Colors.white, fontSize: 20.sp) ;
+
+  static TextStyle taskTitle = TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.w700) ;
+
+  static TextStyle taskTime = TextStyle(color: Colors.white, fontSize: 14.sp);
 }

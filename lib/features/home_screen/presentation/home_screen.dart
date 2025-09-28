@@ -11,10 +11,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: HomeBody(
-        userName: userName ?? "User-Name",
-        userImage:
-            userImage ??
-            "https://i.pinimg.com/736x/ec/ce/ae/ecceaee5b4c02ce2c5030da88e530169.jpg",
+        userName: userName,
+        userImage: userImage,
       ),
     );
   }
