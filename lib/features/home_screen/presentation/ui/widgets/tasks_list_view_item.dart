@@ -11,20 +11,38 @@ class TasksListViewItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
       decoration: AppBoxDecoration.actionButtonDecoration,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 10.h,
-        children: [
-          Text("Flutter Task - 1", style: AppTextStyles.taskTitle,),
-          Row(
-            spacing: 10.w,
-            children: [
-              Icon(Icons.access_time, color: Colors.white, size: 30.sp,),
-              Text("02:25 AM - 02:40 AM", style: AppTextStyles.taskTime),
-            ],
-          ),
-          Text("I will do this task", style: AppTextStyles.actionButton,),
-        ],
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 8.h,
+              children: [
+                Text("Flutter Task - 1", style: AppTextStyles.taskTitle),
+                Row(
+                  spacing: 10.w,
+                  children: [
+                    Icon(Icons.access_time, color: Colors.white, size: 25.sp),
+                    Text("02:25 AM - 02:40 AM", style: AppTextStyles.taskTime),
+                  ],
+                ),
+                Text(
+                  "I will do this task",
+                  style: AppTextStyles.taskDescription,
+                ),
+              ],
+            ),
+            Spacer(),
+            VerticalDivider(thickness: 1, color: Colors.white),
+            RotatedBox(
+              quarterTurns: 3,
+              child: Text(
+                "todo".toUpperCase(),
+                style: AppTextStyles.taskDescription,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
