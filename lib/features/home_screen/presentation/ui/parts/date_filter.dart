@@ -11,9 +11,10 @@ class DateFilter extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return SizedBox(
-      height: 120.w,
+      height: 130.h,
       child: ListView.separated(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        physics: NeverScrollableScrollPhysics(),
         itemCount: 4,
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,

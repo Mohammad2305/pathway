@@ -4,8 +4,9 @@ import 'package:pathway/cores/shared/constants/app_colors.dart';
 
 class AppTextStyles {
   static TextStyle appTitle = TextStyle(
-    fontSize: 40.sp,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w700,
+    color: AppColors.mainColor
   );
 
   static TextStyle appOrdinary = TextStyle(
@@ -51,6 +52,12 @@ class AppTextStyles {
   static TextStyle verticalText = TextStyle(
     color: Colors.white,
     fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle dateFilterNumber = TextStyle(
+    color: Colors.white,
+    fontSize: 40.sp,
     fontWeight: FontWeight.w500,
   );
 }

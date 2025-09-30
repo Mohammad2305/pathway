@@ -1,4 +1,6 @@
+String mainPath = "assets/images";
+
 class AppAssets{
-  static final String appLogo = "assets/gif/task-list.gif";
-  static final String taskListEmpty = "assets/gif/check.gif";
+  static final String appLogo = "$mainPath/gif/task-list.gif";
+  static final String taskListEmpty = "$mainPath/gif/check.gif";
 }

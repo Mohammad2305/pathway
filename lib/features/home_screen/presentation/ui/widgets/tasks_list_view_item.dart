@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pathway/cores/shared/themes/app_boxes_decoration.dart';
 import 'package:pathway/cores/shared/themes/app_text_styles.dart';
+import 'package:pathway/cores/utils/models/functions/dates.dart';
+import 'package:pathway/cores/utils/models/values/tasks_list.dart';
 
 class TasksListViewItem extends StatelessWidget {
-  const TasksListViewItem({super.key});
+  final int index;
+  const TasksListViewItem({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +21,19 @@ class TasksListViewItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 8.h,
               children: [
-                Text("Flutter Task - 1", style: AppTextStyles.taskTitle),
+                Text(tasks[index].name, style: AppTextStyles.taskTitle),
                 Row(
                   spacing: 10.w,
                   children: [
                     Icon(Icons.access_time, color: Colors.white, size: 25.sp),
-                    Text("02:25 AM - 02:40 AM", style: AppTextStyles.taskTime),
+                    Text(
+                      "${customTimeForm(tasks[index].startTime)} - ${customTimeForm(tasks[index].startTime)}",
+                      style: AppTextStyles.taskTime,
+                    ),
                   ],
                 ),
                 Text(
-                  "I will do this task",
+                  tasks[index].description,
                   style: AppTextStyles.taskDescription,
                 ),
               ],
