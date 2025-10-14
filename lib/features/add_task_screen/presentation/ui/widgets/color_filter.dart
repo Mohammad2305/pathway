@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../cores/shared/constants/app_colors.dart';
 
 class ColorPicker extends StatefulWidget {
-  const ColorPicker({super.key,});
+  final void Function(Color color) onTap;
+  const ColorPicker({super.key, required this.onTap, });
 
   @override
   State<ColorPicker> createState() => _ColorPickerState();
@@ -15,7 +16,7 @@ class _ColorPickerState extends State<ColorPicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40.w,
+      height: 50.w,
       child: ListView.separated(
         itemCount: colors.length,
         physics: NeverScrollableScrollPhysics(),
@@ -24,18 +25,16 @@ class _ColorPickerState extends State<ColorPicker> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: (){
-              setState(() {
-                selectedIndex = index;
-              });
+              if(selectedIndex!=index){
+                setState(() {
+                  selectedIndex = index;
+                  widget.onTap(colors[selectedIndex]);
+                });
+              }
             },
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                CircleAvatar(
-                  backgroundColor: colors[index],
-                ),
-                selectedIndex==index ? Icon(Icons.check, color: Colors.white,) : SizedBox.shrink(),
-              ],
+            child: CircleAvatar(
+              backgroundColor: colors[index],
+              child: selectedIndex==index ? Icon(Icons.check, color: Colors.white,) : SizedBox.shrink(),
             ),
           );
         },

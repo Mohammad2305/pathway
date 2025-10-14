@@ -4,17 +4,17 @@ import '../constants/app_colors.dart';
 
 class AppBorderStyles{
   static InputBorder border = OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.mainColor, width: 2.sp),
+      borderSide: BorderSide(color: Colors.black, width: 2.sp),
       borderRadius: BorderRadius.circular(10.r)
   );
 
   static InputBorder focusedBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.green, width: 2.sp),
+      borderSide: BorderSide(color: AppColors.mainColor, width: 2.sp),
       borderRadius: BorderRadius.circular(10.r)
   );
 
   static InputBorder enabledBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.mainColor, width: 2.sp),
+      borderSide: BorderSide(color: Colors.black, width: 2.sp),
       borderRadius: BorderRadius.circular(10.r)
   );
 

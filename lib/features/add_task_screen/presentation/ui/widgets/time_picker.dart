@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../cores/shared/ui/widgets/custom_input.dart';
 import '../../../data/cores/utils/constants/add_task_inputs.dart';
@@ -12,11 +13,27 @@ class TimePicker extends StatelessWidget {
       spacing: 15.w,
       children: [
         Expanded(
-          child: CustomInput(inputInfo: AddTaskInputs.taskStartTime),
+          child: CustomInput(
+            inputInfo: AddTaskInputs.taskStartTime(context),
+          ),
         ),
         Expanded(
-          child: CustomInput(inputInfo: AddTaskInputs.taskEndTime),
+          child: CustomInput(
+            inputInfo: AddTaskInputs.taskEndTime(context),
+          ),
         ),
+        // Expanded(
+        //   child: CustomDateTimeField(
+        //     info: AddTaskInputs.taskStartTime(context),
+        //     inputType: InputType.time,
+        //   ),
+        // ),
+        // Expanded(
+        //   child: CustomDateTimeField(
+        //     info: AddTaskInputs.taskEndTime(context),
+        //     inputType: InputType.time,
+        //   ),
+        // ),
       ],
     );
   }

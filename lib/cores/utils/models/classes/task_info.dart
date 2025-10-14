@@ -8,6 +8,7 @@ class TaskMainInfo {
     required this.startTime,
     required this.endTime,
     required this.taskColor,
+    required this.taskStatus
   });
 
   final String name;
@@ -16,4 +17,5 @@ class TaskMainInfo {
   final TimeOfDay startTime;
   final TimeOfDay endTime;
   final Color taskColor;
+  final String taskStatus;
 }

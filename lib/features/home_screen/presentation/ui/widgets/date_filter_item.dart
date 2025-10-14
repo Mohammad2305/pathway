@@ -23,18 +23,19 @@ class DateFilterItem extends StatelessWidget {
     bool isSelected = (index == selectedIndex);
 
     return InkWell(
+      hoverColor: Colors.transparent,
       onTap: () {},
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w,),
         decoration: AppBoxDecoration.actionButtonDecoration.copyWith(
-          color: isSelected ? AppColors.mainColor : Colors.white,
+          color: isSelected ? AppColors.mainColor : AppColors.mainColor.withAlpha(50),
           border: BoxBorder.all(color: AppColors.mainColor, width: 3.w),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              monthDayYear(dateTime.add(Duration(days: index))).substring(0, 3),
+              monthDayYear(dateTime.add(Duration(days: index))).substring(0, 3).toUpperCase(),
               style: AppTextStyles.actionButton.copyWith(
                 color: isSelected ? Colors.white : Colors.black,
               ),
@@ -46,7 +47,7 @@ class DateFilterItem extends StatelessWidget {
               ),
             ),
             Text(
-              dayName(dateTime.add(Duration(days: index))).substring(0, 3),
+              dayName(dateTime.add(Duration(days: index))).substring(0, 3).toUpperCase(),
               style: AppTextStyles.actionButton.copyWith(
                 color: isSelected ? Colors.white : Colors.black,
               ),

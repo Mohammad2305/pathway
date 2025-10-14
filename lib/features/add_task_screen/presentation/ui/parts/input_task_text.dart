@@ -9,7 +9,7 @@ class InputTaskText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 15.w,
+      spacing: 8.w,
       children: [
         CustomInput(inputInfo: AddTaskInputs.taskTitle),
         CustomInput(inputInfo: AddTaskInputs.taskDescription),

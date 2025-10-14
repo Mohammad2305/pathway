@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pathway/cores/shared/ui/widgets/circle_icon.dart';
+import 'package:pathway/cores/utils/models/functions/show_bottom_sheet.dart';
+import 'package:pathway/features/profile_screen/presentation/ui/parts/change_picture.dart';
+import 'package:pathway/features/profile_screen/presentation/ui/widgets/change_image.dart';
+import 'package:pathway/features/profile_screen/presentation/ui/widgets/change_name.dart';
+import '../../../../../cores/shared/caches/cache_helper.dart';
+import '../../../../../cores/shared/themes/app_text_styles.dart';
+
+class ProfileBody extends StatefulWidget {
+  const ProfileBody({super.key});
+
+  @override
+  State<ProfileBody> createState() => _ProfileBodyState();
+}
+
+class _ProfileBodyState extends State<ProfileBody> {
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController setNameController = TextEditingController();
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
+      child: Column(
+        spacing: 20.h,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ChangePicture(
+            size: Size(6.w, 6.h),
+            radius: 80.r,
+            onTap: () {
+              showCustomBottomSheet(
+                context,
+                ChangeImage(
+                  isFirstScreen: false,
+                  onTap: (String? imgPath) {
+                    setState(() {
+                      CacheHelper.setData("userAvatar", imgPath);
+                    });
+                  },
+                ),
+              );
+            },
+          ),
+          Divider(thickness: 2.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                CacheHelper.getData("userName"),
+                style: AppTextStyles.textFtS16FW700Cbt,
+              ),
+              IconButton(
+                onPressed: () {
+                  showCustomBottomSheet(
+                    context,
+                    ChangeName(
+                      setNameController: setNameController,
+                      name: CacheHelper.getData("userName"),
+                      isFirstSet: false,
+                      onTap: (String name) {
+                        setState(() {
+                          CacheHelper.setData("userName", name);
+                        });
+                      },
+                    ),
+                  );
+                },
+                icon: CircleIcon(radius: 50, child: Icon(Icons.edit)),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

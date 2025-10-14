@@ -13,9 +13,9 @@ class SplashBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 20.h,
         children: [
-          Image.asset(AppAssets.appLogo, height: 500.h,),
-          Text("Pathway", style: AppTextStyles.appTitle,),
-          Text("It's the time for organize our tasks.", style: AppTextStyles.appOrdinary,)
+          Icon(Icons.file_copy, size: 300.sp,),
+          Text("Pathway", style: AppTextStyles.textFtS16FW700Cbt,),
+          Text("It's the time for organize our tasks.", style: AppTextStyles.textFtS14FW500Cbt,)
         ],
       ),
     );

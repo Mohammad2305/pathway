@@ -1,50 +1,99 @@
 import 'package:flutter/material.dart';
-import 'package:pathway/cores/utils/models/functions/input_info.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../../../../../cores/shared/constants/app_constants.dart';
+import '../../../../../../cores/utils/models/classes/input_info.dart';
 import '../../../../../../cores/utils/models/functions/dates.dart';
 
 class AddTaskInputs {
+  // task title properties determine
   static InputInfo taskTitle = InputInfo(
     controller: TextEditingController(),
+    validator: FormBuilderValidators.required(),
     label: 'Title',
     hint: 'Enter title',
     maxLength: 15,
   );
 
+  // task description properties determine
   static InputInfo taskDescription = InputInfo(
     controller: TextEditingController(),
+    validator: FormBuilderValidators.required(),
     label: 'Description',
     hint: 'Enter description',
     maxLine: 3,
   );
 
-  static InputInfo taskDate = InputInfo(
-    controller: TextEditingController(),
-    label: 'Date',
-    hint: customDateForm(AppConstants.nowDateTime),
-    suffixWidget: IconButton(
-      onPressed: () {},
-      icon: Icon(Icons.date_range_outlined),
-    ),
-  );
+  // task date properties determine
+  static DateTime? dateTime;
+  static InputInfo taskDate(BuildContext context) {
+    TextEditingController date = TextEditingController();
+    return InputInfo(
+      controller: date,
+      validator: FormBuilderValidators.date(),
+      label: 'Date',
+      hint: customDateForm(AppConstants.nowDateTime),
+      suffixWidget: Icon(Icons.date_range_outlined),
+      readOnly: true,
+      onTap: () {
+        showDatePicker(
+          context: context,
+          initialDate: AppConstants.nowDateTime,
+          firstDate: AppConstants.nowDateTime,
+          lastDate: DateTime(AppConstants.nowDateTime.year + 10),
+        ).then((onValue) {
+          dateTime = onValue;
+          date.text = customDateForm(dateTime!);
+        });
+      },
+    );
+  }
 
-  static InputInfo taskStartTime = InputInfo(
-    controller: TextEditingController(),
-    label: 'Start Time',
-    hint: customTimeForm(AppConstants.nowTime),
-    suffixWidget: IconButton(
-      onPressed: () {},
-      icon: Icon(Icons.access_time_outlined),
-    ),
-  );
+  // task start time properties determine
+  static TimeOfDay? startTime;
+  static InputInfo taskStartTime(BuildContext context) {
+    TextEditingController start = TextEditingController();
+    return InputInfo(
+      controller: start,
+      validator: FormBuilderValidators.required(),
+      label: 'Start Time',
+      hint: customTimeForm(AppConstants.nowTime),
+      suffixWidget: Icon(Icons.access_time_outlined),
+      readOnly: true,
+      onTap: () {
+        showTimePicker(
+          context: context,
+          initialTime: AppConstants.nowTime,
+        ).then((onValue){
+          startTime=onValue;
+          start.text = customTimeForm(startTime!);
+        });
+      },
+    );
+  }
 
-  static InputInfo taskEndTime = InputInfo(
-    controller: TextEditingController(),
-    label: 'End Time',
-    hint: customTimeForm(AppConstants.nowTime),
-    suffixWidget: IconButton(
-      onPressed: () {},
-      icon: Icon(Icons.access_time_outlined),
-    ),
-  );
+  // task end time properties determine
+  static TimeOfDay? endTime;
+  static InputInfo taskEndTime(BuildContext context) {
+    TextEditingController end = TextEditingController();
+    return InputInfo(
+      controller: end,
+      label: 'End Time',
+      validator: FormBuilderValidators.required(),
+      hint: customTimeForm(AppConstants.nowTime),
+      suffixWidget: Icon(Icons.access_time_outlined),
+      readOnly: true,
+      onTap: () {
+        showTimePicker(
+          context: context,
+          initialTime: AppConstants.nowTime,
+        ).then((onValue){
+          endTime=onValue;
+          end.text = customTimeForm(endTime!);
+        });
+      },
+    );
+  }
+
+  // task color properties determine
+  static Color? taskColor;
 }
