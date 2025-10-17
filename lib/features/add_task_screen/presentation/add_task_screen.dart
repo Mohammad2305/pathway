@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pathway/cores/shared/constants/app_colors.dart';
 import 'package:pathway/cores/utils/models/classes/task_info.dart';
-import 'package:pathway/cores/utils/models/functions/dates.dart';
 import 'package:pathway/cores/utils/models/functions/navigators.dart';
 import 'package:pathway/cores/utils/models/values/tasks_list.dart';
 import 'package:pathway/features/add_task_screen/data/cores/utils/constants/add_task_inputs.dart';
@@ -17,7 +16,6 @@ class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey();
-    int selectedIndex = 0 ;
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -30,10 +28,10 @@ class AddTaskScreen extends StatelessWidget {
               TaskMainInfo(
                 name: AddTaskInputs.taskTitle.controller.text,
                 description: AddTaskInputs.taskDescription.controller.text,
-                dateTime: AddTaskInputs.dateTime!,
-                startTime: AddTaskInputs.startTime!,
-                endTime: AddTaskInputs.endTime!,
-                taskColor: AddTaskInputs.taskColor!,
+                dateTime: AddTaskInputs.dateTime??DateTime.now(),
+                startTime: AddTaskInputs.startTime??TimeOfDay.now(),
+                endTime: AddTaskInputs.endTime??TimeOfDay.now(),
+                taskColor: AddTaskInputs.taskColor??AppColors.mainColor,
                 taskStatus: 'todo'.toUpperCase(),
               ),
             );

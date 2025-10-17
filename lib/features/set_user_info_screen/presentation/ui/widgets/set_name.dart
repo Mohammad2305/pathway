@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import '../../../../../cores/shared/themes/app_boxes_decoration.dart';
 import '../../../../../cores/shared/ui/widgets/custom_input.dart';
@@ -37,6 +38,7 @@ class _SetNameState extends State<SetName> {
           GeneralInput(
             inputInfo: InputInfo(
               controller: widget.setNameController,
+              validator: FormBuilderValidators.required(),
               label: "",
               hint: widget.isFirstSet ? "Enter your name" : widget.name,
               // onTap: () {widget.onTap(widget.setNameController.text);},

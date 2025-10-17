@@ -16,6 +16,6 @@ class TaskMainInfo {
   final DateTime dateTime;
   final TimeOfDay startTime;
   final TimeOfDay endTime;
-  final Color taskColor;
-  final String taskStatus;
+  Color taskColor;
+  String taskStatus;
 }

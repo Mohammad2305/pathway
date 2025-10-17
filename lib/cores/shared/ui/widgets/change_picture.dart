@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../../cores/shared/caches/cache_helper.dart';
-import '../../../../../cores/shared/ui/widgets/profile_picture.dart';
+import '../../caches/cache_helper.dart';
+import 'profile_picture.dart';
 
 class ChangePicture extends StatelessWidget {
   final Size size;

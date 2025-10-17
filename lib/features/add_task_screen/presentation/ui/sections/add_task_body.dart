@@ -10,18 +10,20 @@ class AddTaskBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.w),
-      child: Form(
-        key: formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 8.w,
-          children: [
-            InputTaskText(),
-            InputTaskDate(),
-            InputColor(),
-          ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12.w),
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 8.w,
+            children: [
+              InputTaskText(),
+              InputTaskDate(),
+              InputColor(),
+            ],
+          ),
         ),
       ),
     );

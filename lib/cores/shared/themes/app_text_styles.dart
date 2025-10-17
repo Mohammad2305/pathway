@@ -3,6 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pathway/cores/shared/constants/app_colors.dart';
 
 class AppTextStyles {
+  static TextStyle textFtS30FW900Cbt = TextStyle(
+    fontSize: 30.sp,
+    fontWeight: FontWeight.w900,
+  );
+
   static TextStyle textFtS16FW700Cbt = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,

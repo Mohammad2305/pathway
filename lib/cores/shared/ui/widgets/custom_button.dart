@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             icon ?? SizedBox.shrink(),
-            Text(label, style: AppTextStyles.actionButton,),
+            Text(label, style: AppTextStyles.textFtS16FW700Cbt.copyWith(color: Colors.white),),
           ],
         ),
       ),

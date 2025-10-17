@@ -8,7 +8,8 @@ import 'package:pathway/cores/shared/themes/app_text_styles.dart';
 import 'package:pathway/cores/shared/ui/widgets/custom_button.dart';
 
 class ProfileAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const ProfileAppBar({super.key,});
+  final void Function()? onPressed;
+  const ProfileAppBar({super.key, required this.onPressed,});
 
   @override
   State<ProfileAppBar> createState() => _ProfileAppBarState();
@@ -25,11 +26,7 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
       iconTheme: IconThemeData(color: AppColors.mainColor, weight: 20),
       actions: [
         IconButton(
-          onPressed: () {
-            setState((){
-              CacheHelper.setData("dark_mode", !CacheHelper.getData("dark_mode"));
-            });
-          },
+          onPressed: widget.onPressed,
           icon: CacheHelper.getData("dark_mode") ? Icon(Icons.light_mode) : Icon(Icons.dark_mode),
         ),
       ],

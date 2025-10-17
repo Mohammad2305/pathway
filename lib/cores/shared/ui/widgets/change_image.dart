@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pathway/cores/utils/models/functions/image_choose.dart';
 import 'package:pathway/cores/utils/models/functions/navigators.dart';
-import '../../../../../cores/shared/themes/app_boxes_decoration.dart';
-import '../../../../../cores/shared/ui/widgets/custom_button.dart';
+import '../../themes/app_boxes_decoration.dart';
+import 'custom_button.dart';
 
 class ChangeImage extends StatefulWidget {
   final bool isFirstScreen;

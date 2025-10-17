@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:pathway/cores/shared/ui/widgets/custom_input.dart';
 import 'package:pathway/cores/utils/models/classes/input_info.dart';
 import '../../../../../cores/shared/themes/app_boxes_decoration.dart';
 import '../../../../../cores/shared/ui/widgets/custom_button.dart';
 import '../../../../../cores/utils/models/functions/navigators.dart';
 
-class ChangeName extends StatefulWidget {
+class ChangeName extends StatelessWidget {
   final String? name;
   final bool isFirstSet;
   final void Function(String name) onTap;
@@ -21,31 +22,34 @@ class ChangeName extends StatefulWidget {
   });
 
   @override
-  State<ChangeName> createState() => _ChangeNameState();
-}
-
-class _ChangeNameState extends State<ChangeName> {
-  @override
   Widget build(BuildContext context) {
+    GlobalKey<FormState> formKey = GlobalKey();
     return Container(
       decoration: AppBoxDecoration.bottomSheetDecoration,
       width: double.infinity,
-      padding: EdgeInsets.all(20.sp),
+      margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       child: Column(
         spacing: 20.h,
         mainAxisSize: MainAxisSize.min,
         children: [
-          GeneralInput(
-            inputInfo: InputInfo(
-              controller: widget.setNameController,
-              label: "",
-              hint: widget.isFirstSet ? "Enter your name" : widget.name,
+          Form(
+            key: formKey,
+            child: GeneralInput(
+              inputInfo: InputInfo(
+                controller: setNameController,
+                label: "",
+                hint: isFirstSet ? "Enter your name" : name,
+                validator: FormBuilderValidators.username()
+              ),
             ),
           ),
           CustomButton(
             onTap: () {
-              widget.onTap(widget.setNameController.text);
-              widget.isFirstSet ? null : popBack(context);
+              if(formKey.currentState!.validate()){
+                onTap(setNameController.text);
+                isFirstSet ? null : popBack(context);
+              }
             },
             decoration: AppBoxDecoration.actionButtonDecoration,
             label: "Update Your name",

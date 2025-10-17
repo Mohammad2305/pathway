@@ -3,8 +3,8 @@ import '../../../../../cores/shared/themes/app_text_styles.dart';
 import '../../../../../cores/utils/models/functions/dates.dart';
 
 class DateInfo extends StatelessWidget {
-  final DateTime dateTime;
-  const DateInfo({super.key, required this.dateTime});
+  final int currentIndex;
+  const DateInfo({super.key, required this.currentIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +12,12 @@ class DateInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          monthDayYear(dateTime),
-          style: AppTextStyles.actions,
+          monthDayYear(DateTime.now().add(Duration(days: currentIndex))),
+          style: AppTextStyles.textFtS16FW700Cbt,
         ),
         Text(
-          dayName(dateTime),
-          style: AppTextStyles.actions,
+          dayName(DateTime.now().add(Duration(days: currentIndex))),
+          style: AppTextStyles.textFtS16FW700Cbt,
         ),
       ],
     );

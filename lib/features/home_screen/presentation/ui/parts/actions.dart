@@ -5,9 +5,14 @@ import 'package:pathway/cores/shared/ui/widgets/custom_button.dart';
 import 'package:pathway/features/home_screen/presentation/ui/widgets/date_info.dart';
 
 class AppActions extends StatelessWidget {
-  final DateTime dateTime;
   final void Function() onTap;
-  const AppActions({super.key, required this.dateTime, required this.onTap});
+  final int currentIndex;
+
+  const AppActions({
+    super.key,
+    required this.onTap,
+    required this.currentIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,7 @@ class AppActions extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          DateInfo(dateTime: dateTime),
+          DateInfo(currentIndex: currentIndex,),
           CustomButton(
             onTap: onTap,
             decoration: AppBoxDecoration.actionButtonDecoration,

@@ -57,13 +57,7 @@ TimeOfDay textToTime(String? timeInput){
     return TimeOfDay.now();
   }
 }
-/*
-TimeOfDay textToTime(String timeInput){
-  return TimeOfDay(
-    hour: textToInt(getClock(timeInput, 1)??"0"),
-    minute: textToInt(getClock(timeInput, 2)??"0")
-    // hour: int.tryParse(timeInput??"")??AppConstants.nowTime.hour,
-    // minute: int.tryParse(timeInput??"")??AppConstants.nowTime.minute
-  );
+
+DateTime dateAndTime(DateTime date, TimeOfDay time){
+  return DateTime(date.year, date.month, date.day, time.hour, time.minute);
 }
-*/

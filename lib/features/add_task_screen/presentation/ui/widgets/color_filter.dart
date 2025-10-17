@@ -10,9 +10,9 @@ class ColorPicker extends StatefulWidget {
   State<ColorPicker> createState() => _ColorPickerState();
 }
 
-class _ColorPickerState extends State<ColorPicker> {
-  int selectedIndex = 0 ;
+int selectedIndex = 0 ;
 
+class _ColorPickerState extends State<ColorPicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,12 +25,12 @@ class _ColorPickerState extends State<ColorPicker> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: (){
-              if(selectedIndex!=index){
-                setState(() {
+              setState(() {
+                if(selectedIndex!=index){
                   selectedIndex = index;
-                  widget.onTap(colors[selectedIndex]);
-                });
-              }
+                }
+                widget.onTap(colors[selectedIndex??0]);
+              });
             },
             child: CircleAvatar(
               backgroundColor: colors[index],

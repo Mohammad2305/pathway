@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../cores/shared/caches/cache_helper.dart';
 import '../../../../../cores/shared/ui/widgets/profile_picture.dart';
-import '../../../../profile_screen/presentation/ui/widgets/change_image.dart';
+import '../../../../../cores/shared/ui/widgets/change_image.dart';
 import '../widgets/set_name.dart';
 
 class SetUserInfoBody extends StatefulWidget {

@@ -5,7 +5,7 @@ import '../constants/app_colors.dart';
 class AppBoxDecoration {
   static BoxDecoration actionButtonDecoration = BoxDecoration(
     color: AppColors.mainColor,
-    borderRadius: BorderRadius.circular(20.r),
+    borderRadius: BorderRadius.circular(15.r),
   );
 
   static BoxDecoration changeProfile(String image, double thickness) =>

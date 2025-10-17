@@ -31,15 +31,15 @@ class AddTaskInputs {
       controller: date,
       validator: FormBuilderValidators.date(),
       label: 'Date',
-      hint: customDateForm(AppConstants.nowDateTime),
+      hint: customDateForm(DateTime.now()),
       suffixWidget: Icon(Icons.date_range_outlined),
       readOnly: true,
       onTap: () {
         showDatePicker(
           context: context,
-          initialDate: AppConstants.nowDateTime,
-          firstDate: AppConstants.nowDateTime,
-          lastDate: DateTime(AppConstants.nowDateTime.year + 10),
+          initialDate: DateTime.now(),
+          firstDate: DateTime.now(),
+          lastDate: DateTime(DateTime.now().year + 10),
         ).then((onValue) {
           dateTime = onValue;
           date.text = customDateForm(dateTime!);
@@ -56,13 +56,13 @@ class AddTaskInputs {
       controller: start,
       validator: FormBuilderValidators.required(),
       label: 'Start Time',
-      hint: customTimeForm(AppConstants.nowTime),
+      hint: customTimeForm(TimeOfDay.now()),
       suffixWidget: Icon(Icons.access_time_outlined),
       readOnly: true,
       onTap: () {
         showTimePicker(
           context: context,
-          initialTime: AppConstants.nowTime,
+          initialTime: TimeOfDay.now(),
         ).then((onValue){
           startTime=onValue;
           start.text = customTimeForm(startTime!);
@@ -79,13 +79,13 @@ class AddTaskInputs {
       controller: end,
       label: 'End Time',
       validator: FormBuilderValidators.required(),
-      hint: customTimeForm(AppConstants.nowTime),
+      hint: customTimeForm(TimeOfDay.now()),
       suffixWidget: Icon(Icons.access_time_outlined),
       readOnly: true,
       onTap: () {
         showTimePicker(
           context: context,
-          initialTime: AppConstants.nowTime,
+          initialTime: TimeOfDay.now(),
         ).then((onValue){
           endTime=onValue;
           end.text = customTimeForm(endTime!);

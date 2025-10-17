@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pathway/cores/shared/constants/app_colors.dart';
 import 'package:pathway/cores/shared/themes/app_boxes_decoration.dart';
 import 'package:pathway/cores/shared/themes/app_text_styles.dart';
 import 'package:pathway/cores/utils/models/functions/dates.dart';
-import 'package:pathway/cores/utils/models/values/tasks_list.dart';
+import '../../../../../cores/utils/models/classes/task_info.dart';
 
 class TasksListViewItem extends StatelessWidget {
   final int index;
-  const TasksListViewItem({super.key, required this.index});
+  final List<TaskMainInfo> tasksList;
+  const TasksListViewItem({super.key, required this.index, required this.tasksList});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-      decoration: AppBoxDecoration.actionButtonDecoration.copyWith(color: tasks[index].taskColor),
+      decoration: AppBoxDecoration.actionButtonDecoration.copyWith(color: tasksList[index].taskColor),
       child: IntrinsicHeight(
         child: Row(
           children: [
@@ -24,19 +24,19 @@ class TasksListViewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 8.h,
                 children: [
-                  Text(tasks[index].name, style: AppTextStyles.taskTitle),
+                  Text(tasksList[index].name, style: AppTextStyles.taskTitle),
                   Row(
                     spacing: 10.w,
                     children: [
                       Icon(Icons.access_time, color: Colors.white, size: 25.sp),
                       Text(
-                        "${customTimeForm(tasks[index].startTime)} - ${customTimeForm(tasks[index].endTime)}",
+                        "${customTimeForm(tasksList[index].startTime)} - ${customTimeForm(tasksList[index].endTime)}",
                         style: AppTextStyles.taskTime,
                       ),
                     ],
                   ),
                   Text(
-                    tasks[index].description,
+                    tasksList[index].description,
                     style: AppTextStyles.taskDescription,
                     maxLines: 2,
                   ),
@@ -48,7 +48,7 @@ class TasksListViewItem extends StatelessWidget {
             RotatedBox(
               quarterTurns: 3,
               child: Text(
-                tasks[index].taskStatus,
+                tasksList[index].taskStatus.toUpperCase(),
                 style: AppTextStyles.taskDescription,
               ),
             ),

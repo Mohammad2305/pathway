@@ -16,11 +16,11 @@ class _PathwayState extends State<Pathway> {
     CacheHelper.setData("dark_mode", false);
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
+
   return ScreenUtilInit(
-      designSize: const Size(360, 690),
+      designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(

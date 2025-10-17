@@ -8,14 +8,14 @@ import 'package:pathway/cores/utils/models/functions/number_form.dart';
 
 class DateFilterItem extends StatelessWidget {
   final int index;
-  final DateTime dateTime;
   final int selectedIndex;
+  final void Function()? onTap;
 
   const DateFilterItem({
     super.key,
-    required this.dateTime,
     required this.index,
     required this.selectedIndex,
+    required this.onTap,
   });
 
   @override
@@ -24,7 +24,7 @@ class DateFilterItem extends StatelessWidget {
 
     return InkWell(
       hoverColor: Colors.transparent,
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w,),
         decoration: AppBoxDecoration.actionButtonDecoration.copyWith(
@@ -35,20 +35,20 @@ class DateFilterItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              monthDayYear(dateTime.add(Duration(days: index))).substring(0, 3).toUpperCase(),
-              style: AppTextStyles.actionButton.copyWith(
+              monthDayYear(DateTime.now().add(Duration(days: index))).substring(0, 3).toUpperCase(),
+              style: AppTextStyles.textFtS16FW700Cbt.copyWith(
                 color: isSelected ? Colors.white : Colors.black,
               ),
             ),
             Text(
-              numberFormDate((dateTime.add(Duration(days: index))).day),
-              style: AppTextStyles.dateFilterNumber.copyWith(
+              numberFormDate((DateTime.now().add(Duration(days: index))).day),
+              style: AppTextStyles.textFtS30FW900Cbt.copyWith(
                 color: isSelected ? Colors.white : Colors.black,
               ),
             ),
             Text(
-              dayName(dateTime.add(Duration(days: index))).substring(0, 3).toUpperCase(),
-              style: AppTextStyles.actionButton.copyWith(
+              dayName(DateTime.now().add(Duration(days: index))).substring(0, 3).toUpperCase(),
+              style: AppTextStyles.textFtS16FW700Cbt.copyWith(
                 color: isSelected ? Colors.white : Colors.black,
               ),
             ),
