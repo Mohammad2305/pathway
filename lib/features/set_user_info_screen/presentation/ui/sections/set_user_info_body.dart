@@ -17,32 +17,31 @@ class _SetUserInfoBodyState extends State<SetUserInfoBody> {
   TextEditingController setNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 12.h,
-          children: [
-            ProfilePicture(
-              radius: 100.sp,
-            ),
-            ChangeImage(
-              onTap: (String? imgPath) {
-                CacheHelper.setData(AppConstants.appUserImage, imgPath);
-                setState(() {});
-              },
-            ),
-            Divider(),
-            SetName(
-              setNameController: setNameController,
-              onTap: (name) {
-                CacheHelper.setData(AppConstants.appUserName, name);
-                setState(() {});
-              },
-            ),
-          ],
-        ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 12.h,
+        children: [
+          ProfilePicture(
+            radius: 100.sp,
+          ),
+          ChangeImage(
+            isFirstSet: true,
+            onTap: (String? imgPath) {
+              CacheHelper.setData(AppConstants.appUserImage, imgPath);
+              setState(() {});
+            },
+          ),
+          Divider(),
+          SetName(
+            setNameController: setNameController,
+            onTap: (name) {
+              CacheHelper.setData(AppConstants.appUserName, name);
+              setState(() {});
+            },
+          ),
+        ],
       ),
     );
   }

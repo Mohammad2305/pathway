@@ -33,6 +33,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               showCustomBottomSheet(
                 context,
                 ChangeImage(
+                  isFirstSet: false,
                   onTap: (String? imgPath) {
                     setState(() {
                       CacheHelper.setData(AppConstants.appUserImage, imgPath);

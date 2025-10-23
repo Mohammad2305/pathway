@@ -45,7 +45,12 @@ DateTime textToDate(String? dateInput){
 TimeOfDay textToTime(String timeInput){
   int hour = 0 ;
   int minute = 0 ;
-  hour = int.tryParse(timeInput.substring(0,2))??0;
+  if(timeInput.substring(5)=="AM"){
+    hour = int.tryParse(timeInput.substring(0,2))??0;
+  }
+  else{
+    hour = (int.tryParse(timeInput.substring(0,2))??0)+12;
+  }
   minute = int.tryParse(timeInput.substring(3,5))??0;
   return TimeOfDay(hour: hour, minute: minute);
 }

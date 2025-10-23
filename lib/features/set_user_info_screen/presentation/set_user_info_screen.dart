@@ -29,7 +29,7 @@ class _SetUserInfoScreenState extends State<SetUserInfoScreen> {
       ),
       body: Form(
         key: formKey,
-        child: SingleChildScrollView(child: SetUserInfoBody()),
+        child: Center(child: SingleChildScrollView(child: SetUserInfoBody())),
       ),
     );
   }

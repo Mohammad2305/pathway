@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pathway/cores/shared/caches/cache_helper.dart';
+import 'package:pathway/cores/shared/constants/app_constants.dart';
 import 'package:pathway/cores/utils/models/functions/app_input_decoration.dart';
 import '../../../utils/models/classes/input_info.dart';
 import '../../themes/app_text_styles.dart';
@@ -42,7 +44,7 @@ class GeneralInput extends StatelessWidget {
       maxLines: inputInfo.maxLine,
       maxLength: inputInfo.maxLength,
       keyboardType: inputInfo.keyboardType ?? TextInputType.text,
-      decoration: inputDecoration(inputInfo),
+      decoration: inputDecoration(inputInfo, CacheHelper.getData(AppConstants.appDarkMode)??false),
       onChanged: inputInfo.onChanged,
       focusNode: focusNode,
     );

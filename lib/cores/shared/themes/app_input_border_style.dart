@@ -4,7 +4,7 @@ import '../constants/app_colors.dart';
 
 class AppBorderStyles{
   static InputBorder border = OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.black, width: 2.sp),
+      borderSide: BorderSide(color: Colors.black, width: 2.sp,),
       borderRadius: BorderRadius.circular(10.r)
   );
 

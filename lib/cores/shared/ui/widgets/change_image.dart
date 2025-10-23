@@ -7,7 +7,8 @@ import 'custom_button.dart';
 
 class ChangeImage extends StatefulWidget {
   final void Function(String? imgPath) onTap;
-  const ChangeImage({super.key, required this.onTap});
+  final bool isFirstSet;
+  const ChangeImage({super.key, required this.onTap, required this.isFirstSet});
 
   @override
   State<ChangeImage> createState() => _ChangeImageState();
@@ -27,15 +28,15 @@ class _ChangeImageState extends State<ChangeImage> {
           CustomButton(
             onTap: () async{
               widget.onTap(await chooseCameraImage());
-              popBack(context);
+              widget.isFirstSet ? null : popBack(context);
             },
             decoration: AppBoxDecoration.actionButtonDecoration,
             label: "Upload from Camera",
           ),
           CustomButton(
             onTap: () async{
-              popBack(context);
               widget.onTap(await chooseGalleryImage());
+              widget.isFirstSet ? null : popBack(context);
             },
             decoration: AppBoxDecoration.actionButtonDecoration,
             label: "Upload from Gallery",
