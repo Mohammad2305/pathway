@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pathway/cores/utils/models/classes/task_info.dart';
 import 'package:pathway/cores/utils/models/functions/is_true.dart';
+import 'package:pathway/cores/utils/models/functions/tasks_list.dart';
 import 'package:pathway/features/home_screen/presentation/ui/widgets/tasks_list_empty.dart';
 import '../../../../../cores/shared/caches/task_data.dart';
 import '../parts/tasks_list_view.dart';
@@ -15,6 +16,12 @@ class TasksListState extends StatefulWidget {
 
 
 class _TasksListStateState extends State<TasksListState> {
+  @override
+  void setState(VoidCallback fn) {
+    outDate(TaskData.getTasks()??[]);
+    super.setState(fn);
+  }
+
   @override
   Widget build(BuildContext context) {
     if(isAllFalse(widget.areTrues)){

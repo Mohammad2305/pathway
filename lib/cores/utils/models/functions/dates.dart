@@ -17,13 +17,16 @@ String customDateForm(DateTime dateTime){
 }
 
 String customTimeForm(TimeOfDay time){
-  int realHour = time.hour;
-  String state = "AM";
-  if(realHour>12){
-    realHour -= 12;
-    state = "PM";
-  }
-  return "${numberFormDate(realHour)}:${numberFormDate(time.minute)} $state";
+  DateTime dateTime = DateTime(
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
+    time.hour,
+    time.minute
+  );
+  DateFormat formatter = DateFormat('hh:mm a');
+  String formattedTime = formatter.format(dateTime);
+  return formattedTime;
 }
 
 DateTime textToDate(String? dateInput){
@@ -43,16 +46,19 @@ DateTime textToDate(String? dateInput){
 }
 
 TimeOfDay textToTime(String timeInput){
-  int hour = 0 ;
-  int minute = 0 ;
-  if(timeInput.substring(5)=="AM"){
-    hour = int.tryParse(timeInput.substring(0,2))??0;
+  try {
+    // Define the expected format
+    final DateFormat formatter = DateFormat('hh:mm a'); // 'a' for AM/PM
+
+    // Parse the string into a DateTime object
+    final DateTime dateTime = formatter.parse(timeInput);
+
+    // Create a TimeOfDay object from the DateTime
+    return TimeOfDay.fromDateTime(dateTime);
+  } catch (e) {
+    print('Error parsing time string: $e');
+    return TimeOfDay.now();
   }
-  else{
-    hour = (int.tryParse(timeInput.substring(0,2))??0)+12;
-  }
-  minute = int.tryParse(timeInput.substring(3,5))??0;
-  return TimeOfDay(hour: hour, minute: minute);
 }
 
 DateTime dateAndTime(DateTime date, TimeOfDay time){
