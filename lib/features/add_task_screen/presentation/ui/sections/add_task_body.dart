@@ -12,7 +12,7 @@ class AddTaskBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Form(
           key: formKey,
           child: Column(

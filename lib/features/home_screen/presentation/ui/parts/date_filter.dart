@@ -16,7 +16,7 @@ class _DateFilterState extends State<DateFilter> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: EdgeInsets.symmetric(horizontal: 8.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       itemCount: 4,
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,

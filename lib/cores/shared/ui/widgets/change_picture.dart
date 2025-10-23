@@ -19,7 +19,7 @@ class ChangePicture extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             child: CircleAvatar(
-              backgroundColor: CacheHelper.getData("dark_mode") ? Colors.black54 : Colors.white,
+              backgroundColor: CacheHelper.getData("dark_mode")??false ? Colors.black54 : Colors.white,
               radius: 15,
               child: Icon(Icons.camera_alt, size: 15,),
             ),

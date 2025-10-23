@@ -8,14 +8,12 @@ import '../../../../../cores/utils/models/classes/input_info.dart';
 
 class SetName extends StatefulWidget {
   final String? name;
-  final bool isFirstSet;
   final void Function(String name) onTap;
   final TextEditingController setNameController;
 
   const SetName({
     super.key,
     this.name,
-    required this.isFirstSet,
     required this.onTap,
     required this.setNameController,
   });
@@ -40,7 +38,7 @@ class _SetNameState extends State<SetName> {
               controller: widget.setNameController,
               validator: FormBuilderValidators.required(),
               label: "",
-              hint: widget.isFirstSet ? "Enter your name" : widget.name,
+              hint: "Enter your name",
               // onTap: () {widget.onTap(widget.setNameController.text);},
               onChanged: (value){widget.onTap(value);}
             ),

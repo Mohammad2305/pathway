@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../cores/shared/constants/app_colors.dart';
 
 class ColorPicker extends StatefulWidget {
-  final void Function(Color color) onTap;
+  final void Function(int color) onTap;
   const ColorPicker({super.key, required this.onTap, });
 
   @override
@@ -29,11 +29,11 @@ class _ColorPickerState extends State<ColorPicker> {
                 if(selectedIndex!=index){
                   selectedIndex = index;
                 }
-                widget.onTap(colors[selectedIndex??0]);
+                widget.onTap(colors[selectedIndex]);
               });
             },
             child: CircleAvatar(
-              backgroundColor: colors[index],
+              backgroundColor: Color(colors[index]),
               child: selectedIndex==index ? Icon(Icons.check, color: Colors.white,) : SizedBox.shrink(),
             ),
           );

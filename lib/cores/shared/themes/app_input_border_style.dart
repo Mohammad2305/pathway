@@ -9,7 +9,7 @@ class AppBorderStyles{
   );
 
   static InputBorder focusedBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.mainColor, width: 2.sp),
+      borderSide: BorderSide(color: Color(AppColors.mainColor), width: 2.sp),
       borderRadius: BorderRadius.circular(10.r)
   );
 

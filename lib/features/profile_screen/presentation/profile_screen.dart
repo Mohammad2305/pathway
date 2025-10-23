@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:pathway/cores/utils/models/functions/app_mode_toggle.dart';
 import 'package:pathway/features/profile_screen/presentation/ui/sections/profile_app_bar.dart';
 import 'package:pathway/features/profile_screen/presentation/ui/sections/profile_body.dart';
-import '../../../cores/shared/caches/cache_helper.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key,});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ProfileAppBar(
         onPressed: () {
-          setState((){
-            CacheHelper.setData("dark_mode", !CacheHelper.getData("dark_mode"));
-          });
+          appModeToggle();
         },
       ),
       body: ProfileBody(),

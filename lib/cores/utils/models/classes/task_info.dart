@@ -1,6 +1,23 @@
-import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+part 'task_info.g.dart';
 
-class TaskMainInfo {
+@HiveType(typeId: 0)
+class TaskMainInfo extends HiveObject{
+  @HiveField(0)
+  final String name;
+  @HiveField(1)
+  final String description;
+  @HiveField(2)
+  final DateTime dateTime;
+  @HiveField(3)
+  final String startTime;
+  @HiveField(4)
+  final String endTime;
+  @HiveField(5)
+  int taskColor;
+  @HiveField(6)
+  String taskStatus;
+
   TaskMainInfo({
     required this.name,
     required this.description,
@@ -8,14 +25,6 @@ class TaskMainInfo {
     required this.startTime,
     required this.endTime,
     required this.taskColor,
-    required this.taskStatus
+    required this.taskStatus,
   });
-
-  final String name;
-  final String description;
-  final DateTime dateTime;
-  final TimeOfDay startTime;
-  final TimeOfDay endTime;
-  Color taskColor;
-  String taskStatus;
 }

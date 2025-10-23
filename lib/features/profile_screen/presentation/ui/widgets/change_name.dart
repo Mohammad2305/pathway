@@ -9,26 +9,25 @@ import '../../../../../cores/utils/models/functions/navigators.dart';
 
 class ChangeName extends StatelessWidget {
   final String? name;
-  final bool isFirstSet;
   final void Function(String name) onTap;
   final TextEditingController setNameController;
 
   const ChangeName({
     super.key,
     this.name,
-    required this.isFirstSet,
     required this.onTap,
     required this.setNameController,
   });
 
   @override
   Widget build(BuildContext context) {
+
+
     GlobalKey<FormState> formKey = GlobalKey();
     return Container(
       decoration: AppBoxDecoration.bottomSheetDecoration,
       width: double.infinity,
-      margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, left: 20.w, top: 20.h, right: 20.w),
       child: Column(
         spacing: 20.h,
         mainAxisSize: MainAxisSize.min,
@@ -39,7 +38,7 @@ class ChangeName extends StatelessWidget {
               inputInfo: InputInfo(
                 controller: setNameController,
                 label: "",
-                hint: isFirstSet ? "Enter your name" : name,
+                hint: name,
                 validator: FormBuilderValidators.username()
               ),
             ),
@@ -48,7 +47,7 @@ class ChangeName extends StatelessWidget {
             onTap: () {
               if(formKey.currentState!.validate()){
                 onTap(setNameController.text);
-                isFirstSet ? null : popBack(context);
+                popBack(context);
               }
             },
             decoration: AppBoxDecoration.actionButtonDecoration,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pathway/features/add_task_screen/data/cores/utils/constants/add_task_inputs.dart';
 import '../../../../../cores/shared/themes/app_text_styles.dart';
 import '../widgets/color_filter.dart';
@@ -11,7 +10,6 @@ class InputColor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 8.h,
       children: [
         Text("Color", style: AppTextStyles.textFtS14FW500Cbt),
         ColorPicker(

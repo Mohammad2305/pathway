@@ -12,7 +12,8 @@ class InputInfo {
     this.maxLength,
     this.readOnly,
     this.onTap,
-    this.onChanged
+    this.onChanged,
+    this.keyboardType,
   });
 
   final TextEditingController controller;
@@ -26,4 +27,5 @@ class InputInfo {
   final String? Function(String?)? validator;
   final void Function()? onTap;
   final ValueChanged<String>? onChanged;
+  final TextInputType? keyboardType;
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import '../../../../../../cores/shared/constants/app_constants.dart';
 import '../../../../../../cores/utils/models/classes/input_info.dart';
 import '../../../../../../cores/utils/models/functions/dates.dart';
 
@@ -65,7 +64,7 @@ class AddTaskInputs {
           initialTime: TimeOfDay.now(),
         ).then((onValue){
           startTime=onValue;
-          start.text = customTimeForm(startTime!);
+          start.text = customTimeForm(startTime??TimeOfDay.now());
         });
       },
     );
@@ -88,12 +87,12 @@ class AddTaskInputs {
           initialTime: TimeOfDay.now(),
         ).then((onValue){
           endTime=onValue;
-          end.text = customTimeForm(endTime!);
+          end.text = customTimeForm(endTime??TimeOfDay.now());
         });
       },
     );
   }
 
   // task color properties determine
-  static Color? taskColor;
+  static int? taskColor;
 }

@@ -1,52 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pathway/cores/shared/themes/app_boxes_decoration.dart';
-import 'package:pathway/cores/shared/themes/app_text_styles.dart';
+import 'package:pathway/features/home_screen/data/utils/functions/swipe_direction_able.dart';
 import 'package:pathway/features/home_screen/presentation/ui/widgets/tasks_list_view_item.dart';
-import '../../../../../cores/utils/models/classes/task_info.dart';
+import 'package:pathway/cores/shared/ui/widgets/swipe_dismissible.dart';
+import '../../../../../cores/shared/caches/task_data.dart';
 
 class TasksListView extends StatelessWidget {
   final void Function(DismissDirection, int) onDismissed;
-  final List<TaskMainInfo> tasksList;
-  const TasksListView({super.key, required this.onDismissed, required this.tasksList,});
+  final List<bool> areTrues;
+  const TasksListView({super.key, required this.onDismissed, required this.areTrues,});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: EdgeInsets.symmetric(horizontal: 8.w),
+      padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 24.h),
       physics: PageScrollPhysics(),
-      itemCount: tasksList.length,
+      itemCount: TaskData.taskBox.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return Dismissible(
-          key: UniqueKey(),
-          secondaryBackground: Container(
-            alignment: Alignment.centerRight,
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            decoration: AppBoxDecoration.actionButtonDecoration.copyWith(
-              color: Colors.green,
+        if(areTrues[index]){
+          return Dismissible(
+            key: UniqueKey(),
+            direction: swipeDirectionAble(areTrues, index),
+            secondaryBackground: SwipeDismissible(
+              label: "done",
+              actionColor: Colors.green,
+              textAlign: Alignment.centerRight,
             ),
-            child: Text(
-              "Completed",
-              style: AppTextStyles.taskDescription,
-              textAlign: TextAlign.end,
+            background: SwipeDismissible(
+              label: "delete",
+              actionColor: Colors.red,
+              textAlign: Alignment.centerLeft,
             ),
-          ),
-          background: Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            decoration: AppBoxDecoration.actionButtonDecoration.copyWith(
-              color: Colors.red,
-            ),
-            child: Text("delete", style: AppTextStyles.taskDescription),
-          ),
-          onDismissed: (direction){
-            onDismissed(direction, index);
-          },
-          child: TasksListViewItem(index: index, tasksList: tasksList,),
-        );
+            onDismissed: (direction){
+              onDismissed(direction, index);
+            },
+            child: TasksListViewItem(taskIndex: index,),
+          );
+        }
+        else{
+          return SizedBox.shrink();
+        }
       },
-      separatorBuilder: (context, index) => SizedBox(height: 10.h),
+      separatorBuilder: (context, index) {
+        if(areTrues[index]){
+          return SizedBox(height: 10.h,);
+        }
+        else{
+          return SizedBox.shrink();
+        }
+      },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pathway/cores/shared/constants/app_constants.dart';
 import 'package:pathway/cores/utils/models/functions/navigators.dart';
 import 'package:pathway/features/home_screen/presentation/home_screen.dart';
 import 'package:pathway/features/set_user_info_screen/presentation/set_user_info_screen.dart';
@@ -18,7 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       pushReplacementTo(
         context,
-        CacheHelper.getData("userName")==null ? SetUserInfoScreen() : HomeScreen()
+        CacheHelper.getData(AppConstants.appUserName)==null && CacheHelper.getData(AppConstants.appUserImage)==null
+            ? SetUserInfoScreen() : HomeScreen()
       );
     });
     super.initState();

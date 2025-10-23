@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: HomeBody(),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.mainColor,
+        backgroundColor: Color(AppColors.mainColor),
         onPressed: (){
           pushTo(context, TasksListScreen());
         },

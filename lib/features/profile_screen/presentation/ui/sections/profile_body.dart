@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pathway/cores/shared/constants/app_constants.dart';
 import 'package:pathway/cores/shared/ui/widgets/circle_icon.dart';
 import 'package:pathway/cores/utils/models/functions/show_bottom_sheet.dart';
 import 'package:pathway/cores/shared/ui/widgets/change_picture.dart';
@@ -32,10 +33,9 @@ class _ProfileBodyState extends State<ProfileBody> {
               showCustomBottomSheet(
                 context,
                 ChangeImage(
-                  isFirstScreen: false,
                   onTap: (String? imgPath) {
                     setState(() {
-                      CacheHelper.setData("userAvatar", imgPath);
+                      CacheHelper.setData(AppConstants.appUserImage, imgPath);
                     });
                   },
                 ),
@@ -47,20 +47,21 @@ class _ProfileBodyState extends State<ProfileBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                CacheHelper.getData("userName"),
+                CacheHelper.getData(AppConstants.appUserName),
                 style: AppTextStyles.textFtS16FW700Cbt,
               ),
               IconButton(
-                onPressed: () {
+                onPressed: () async{
+                  FocusScope.of(context).unfocus(); // ensure previous focus is cleared
+                  await Future.delayed(const Duration(milliseconds: 150)); // short pause
                   showCustomBottomSheet(
                     context,
                     ChangeName(
                       setNameController: setNameController,
-                      name: CacheHelper.getData("userName"),
-                      isFirstSet: false,
+                      name: CacheHelper.getData(AppConstants.appUserName),
                       onTap: (String name) {
                         setState(() {
-                          CacheHelper.setData("userName", name);
+                          CacheHelper.setData(AppConstants.appUserName, name);
                         });
                       },
                     ),

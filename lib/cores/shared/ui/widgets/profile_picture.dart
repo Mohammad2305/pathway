@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pathway/cores/shared/caches/cache_helper.dart';
 import 'package:pathway/cores/shared/constants/app_assets.dart';
+import 'package:pathway/cores/shared/constants/app_constants.dart';
 
 class ProfilePicture extends StatelessWidget {
   final double? radius;
@@ -10,8 +11,8 @@ class ProfilePicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CacheHelper.getData("userAvatar") == null
+    return CacheHelper.getData(AppConstants.appUserImage) == null
         ? CircleAvatar(radius: radius,child: Image.asset(AppAssets.userDefaultImage,),)
-        : CircleAvatar(radius: radius, backgroundImage: FileImage(File(CacheHelper.getData("userAvatar")),),);
+        : CircleAvatar(radius: radius, backgroundImage: FileImage(File(CacheHelper.getData(AppConstants.appUserImage)),),);
   }
 }

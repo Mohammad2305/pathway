@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pathway/features/home_screen/data/utils/functions/filter_tasks.dart';
+import 'package:pathway/cores/shared/caches/task_data.dart';
+import 'package:pathway/cores/utils/models/functions/dates.dart';
 import 'package:pathway/features/home_screen/presentation/ui/parts/actions.dart';
 import 'package:pathway/features/home_screen/presentation/ui/parts/date_filter.dart';
 import 'package:pathway/features/home_screen/presentation/ui/parts/user_info.dart';
 import 'package:pathway/features/home_screen/presentation/ui/widgets/tasks_list_state.dart';
-import '../../../../../cores/utils/models/classes/task_info.dart';
-import '../../../../../cores/utils/models/values/tasks_list.dart';
 import '../../../../add_task_screen/presentation/add_task_screen.dart';
 import '../../../../profile_screen/presentation/profile_screen.dart';
 
@@ -16,13 +15,19 @@ class HomeBody extends StatefulWidget {
   @override
   State<HomeBody> createState() => _HomeBodyState();
 }
+
 int currentIndex = 0 ;
-List<TaskMainInfo> selectedTasks = tasks;
 
 class _HomeBodyState extends State<HomeBody> {
   @override
+  void setState(VoidCallback fn) {
+    TaskData.getTasks();
+    super.setState(fn);
+  }
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: false,
       child: Column(
         spacing: 20.h,
         children: [
@@ -50,13 +55,19 @@ class _HomeBodyState extends State<HomeBody> {
             child: DateFilter(
               onChange: (selectedIndex){
                 setState(() {
-                  currentIndex = selectedIndex;
-                  selectedTasks = filterTasks(currentIndex, selectedIndex);
+                  if(currentIndex != selectedIndex){
+                    currentIndex = selectedIndex;
+                  }
                 });
               },
             ),
           ),
-          Expanded(flex: 6, child: TasksListState(tasksList: selectedTasks,)),
+          Expanded(
+            flex: 7,
+            child: TasksListState(
+              areTrues: TaskData.taskDate(dayDate().add(Duration(days: currentIndex))),
+            ),
+          ),
         ],
       ),
     );

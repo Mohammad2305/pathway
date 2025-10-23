@@ -29,6 +29,11 @@ class GeneralInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final focusNode = FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      focusNode.requestFocus(); // ensures keyboard opens once sheet fully shown
+    });
+
     return TextFormField(
       validator: inputInfo.validator,
       controller: inputInfo.controller,
@@ -36,8 +41,10 @@ class GeneralInput extends StatelessWidget {
       onTap: inputInfo.onTap,
       maxLines: inputInfo.maxLine,
       maxLength: inputInfo.maxLength,
+      keyboardType: inputInfo.keyboardType ?? TextInputType.text,
       decoration: inputDecoration(inputInfo),
       onChanged: inputInfo.onChanged,
+      focusNode: focusNode,
     );
   }
 }

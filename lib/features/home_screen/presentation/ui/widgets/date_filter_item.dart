@@ -26,10 +26,10 @@ class DateFilterItem extends StatelessWidget {
       hoverColor: Colors.transparent,
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.w,),
+        padding: EdgeInsets.symmetric(horizontal: 18.w,),
         decoration: AppBoxDecoration.actionButtonDecoration.copyWith(
-          color: isSelected ? AppColors.mainColor : AppColors.mainColor.withAlpha(50),
-          border: BoxBorder.all(color: AppColors.mainColor, width: 3.w),
+          color: isSelected ? Color(AppColors.mainColor) : Color(AppColors.mainColor).withAlpha(50),
+          border: BoxBorder.all(color: Color(AppColors.mainColor), width: 3.w),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pathway/cores/utils/models/classes/task_info.dart';
+import 'package:pathway/cores/utils/models/functions/is_true.dart';
 import 'package:pathway/features/home_screen/presentation/ui/widgets/tasks_list_empty.dart';
-import '../../../../../cores/utils/models/values/tasks_list.dart';
+import '../../../../../cores/shared/caches/task_data.dart';
 import '../parts/tasks_list_view.dart';
 
 class TasksListState extends StatefulWidget {
-  final List<TaskMainInfo> tasksList;
-  const TasksListState({super.key, required this.tasksList,});
+  final List<bool> areTrues;
+  const TasksListState({super.key, required this.areTrues,});
 
   @override
   State<TasksListState> createState() => _TasksListStateState();
@@ -16,24 +17,36 @@ class TasksListState extends StatefulWidget {
 class _TasksListStateState extends State<TasksListState> {
   @override
   Widget build(BuildContext context) {
-    return widget.tasksList.isEmpty ? TasksListEmpty(): TasksListView(
-      tasksList: widget.tasksList,
-      onDismissed: (direction, index) {
-        setState(() {
-          if (direction == DismissDirection.endToStart) {
-            widget.tasksList[index].taskStatus = "completed";
-            widget.tasksList[index].taskColor = Colors.green;
-          }
-          else if(direction == DismissDirection.startToEnd){
-            if(widget.tasksList != tasks){
-              tasks.removeAt(tasks.indexWhere((task){
-                return task == widget.tasksList[index];
-              }));
+    if(isAllFalse(widget.areTrues)){
+      return TasksListEmpty();
+    }
+    else{
+      return TasksListView(
+        areTrues: widget.areTrues,
+        onDismissed: (direction, index) {
+          setState(() {
+            if (direction == DismissDirection.endToStart) {
+              if(TaskData.getTask(index)?.taskStatus!="outdate"){
+                TaskData.update(
+                  index,
+                  TaskMainInfo(
+                    name: TaskData.getTask(index)!.name,
+                    description: TaskData.getTask(index)!.description,
+                    dateTime: TaskData.getTask(index)!.dateTime,
+                    startTime: TaskData.getTask(index)!.startTime,
+                    endTime: TaskData.getTask(index)!.endTime,
+                    taskColor: 0xFF4CAF50,
+                    taskStatus: "done",
+                  )
+                );
+              }
             }
-            widget.tasksList.removeAt(index);
-          }
-        });
-      },
-    );
+            else if(direction == DismissDirection.startToEnd){
+              TaskData.deleteTask(index);
+            }
+          });
+        },
+      );
+    }
   }
 }

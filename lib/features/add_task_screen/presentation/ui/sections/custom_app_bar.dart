@@ -9,7 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(color: AppColors.mainColor, weight: 20),
+      iconTheme: IconThemeData(color: Color(AppColors.mainColor), weight: 20),
       title: Text("Add Task", style: AppTextStyles.textFtS16FW700Cbt,),
       centerTitle: true,
     );

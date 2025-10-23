@@ -1,9 +1,10 @@
+import 'package:pathway/cores/shared/caches/task_data.dart';
 import 'package:pathway/cores/utils/models/classes/task_info.dart';
-import '../../../../../cores/utils/models/values/tasks_list.dart';
+import '../../../../../cores/utils/models/functions/tasks_list.dart';
 
 List<TaskMainInfo> filterTasks(int currentIndex, int selectedIndex){
   currentIndex = selectedIndex;
-   return tasks.where((task){
+   return TaskData.getTasks()!.where((task){
     return task.dateTime == DateTime(
         DateTime.now().year,
         DateTime.now().month,

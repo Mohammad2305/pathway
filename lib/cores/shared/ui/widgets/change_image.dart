@@ -6,9 +6,8 @@ import '../../themes/app_boxes_decoration.dart';
 import 'custom_button.dart';
 
 class ChangeImage extends StatefulWidget {
-  final bool isFirstScreen;
   final void Function(String? imgPath) onTap;
-  const ChangeImage({super.key, required this.isFirstScreen, required this.onTap});
+  const ChangeImage({super.key, required this.onTap});
 
   @override
   State<ChangeImage> createState() => _ChangeImageState();
@@ -27,15 +26,15 @@ class _ChangeImageState extends State<ChangeImage> {
         children: [
           CustomButton(
             onTap: () async{
-              widget.isFirstScreen ? null : popBack(context);
               widget.onTap(await chooseCameraImage());
-              },
+              popBack(context);
+            },
             decoration: AppBoxDecoration.actionButtonDecoration,
             label: "Upload from Camera",
           ),
           CustomButton(
             onTap: () async{
-              widget.isFirstScreen ? null : popBack(context);
+              popBack(context);
               widget.onTap(await chooseGalleryImage());
             },
             decoration: AppBoxDecoration.actionButtonDecoration,

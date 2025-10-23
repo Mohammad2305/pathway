@@ -42,7 +42,7 @@ class CacheHelper{
   }
 
   // clear data item
-  static void clearData(){
-    dataSaver.clear();
+  static Future<void> clearData() async {
+    await dataSaver.clear();
   }
 }

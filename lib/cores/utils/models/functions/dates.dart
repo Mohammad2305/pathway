@@ -42,22 +42,53 @@ DateTime textToDate(String? dateInput){
   }
 }
 
-TimeOfDay textToTime(String? timeInput){
-  if (timeInput == null || timeInput.trim().isEmpty) {
-    // default fallback (e.g., now)
-    return TimeOfDay.now();
-  }
-  try {
-    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
-    DateTime time = dateFormat.parseStrict(timeInput.trim());
-    return TimeOfDay(hour: time.hour, minute: time.minute);
-  } catch (e) {
-    print("⚠️ Failed to parse date: '$timeInput' -> $e");
-    // fallback to now or custom default
-    return TimeOfDay.now();
-  }
+TimeOfDay textToTime(String timeInput){
+  int hour = 0 ;
+  int minute = 0 ;
+  hour = int.tryParse(timeInput.substring(0,2))??0;
+  minute = int.tryParse(timeInput.substring(3,5))??0;
+  return TimeOfDay(hour: hour, minute: minute);
 }
 
 DateTime dateAndTime(DateTime date, TimeOfDay time){
   return DateTime(date.year, date.month, date.day, time.hour, time.minute);
 }
+
+bool isToday(DateTime dayDate) {
+  return dayDate.year == DateTime.now().year &&
+      dayDate.month == DateTime.now().month &&
+      dayDate.day == DateTime.now().day;
+}
+
+bool isTomorrow(DateTime dayDate) {
+  return dayDate.year == DateTime.now().year &&
+      dayDate.month == DateTime.now().month &&
+      dayDate.day == DateTime.now().day+1;
+}
+
+bool isYesterday(DateTime dayDate) {
+  return dayDate.year == DateTime.now().year &&
+      dayDate.month == DateTime.now().month &&
+      dayDate.day == DateTime.now().day-1;
+}
+
+String dayState(DateTime dayDate) {
+  if (isToday(dayDate)) {
+    return "Today";
+  } else if (isTomorrow(dayDate)) {
+    return "Tomorrow";
+  } else if (isYesterday(dayDate)) {
+    return "yesterday";
+  } else {
+    return customDateForm(dayDate);
+  }
+}
+
+DateTime dayDate(){
+  return DateTime(
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day
+  );
+}
+

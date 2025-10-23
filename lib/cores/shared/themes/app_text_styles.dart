@@ -28,18 +28,14 @@ class AppTextStyles {
     fontSize: 20.sp,
   );
 
-  static TextStyle taskTitle = TextStyle(
+  static TextStyle textFtS16FW700Cw = textFtS16FW700Cbt.copyWith(
     color: Colors.white,
-    fontSize: 20.sp,
-    fontWeight: FontWeight.w700,
   );
 
-  static TextStyle taskTime = TextStyle(color: Colors.white, fontSize: 14.sp);
+  static TextStyle textFt12Cw = TextStyle(color: Colors.white, fontSize: 12.sp);
 
-  static TextStyle taskDescription = TextStyle(
+  static TextStyle textFtS14FW500Cw = textFtS14FW500Cbt.copyWith(
     color: Colors.white,
-    fontSize: 16.sp,
-    fontWeight: FontWeight.w500,
   );
 
   static TextStyle verticalText = TextStyle(
