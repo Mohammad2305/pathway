@@ -16,9 +16,9 @@ class HomeBody extends StatefulWidget {
   State<HomeBody> createState() => _HomeBodyState();
 }
 
-int currentIndex = 0 ;
 
 class _HomeBodyState extends State<HomeBody> {
+  int currentIndex = 0;
   @override
   void setState(VoidCallback fn) {
     TaskData.getTasks();
