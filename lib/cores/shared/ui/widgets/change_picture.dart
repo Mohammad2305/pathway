@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pathway/cores/shared/cubits/user_cubit/user_cubit.dart';
 import '../../caches/cache_helper.dart';
 import 'profile_picture.dart';
 
@@ -12,7 +14,11 @@ class ChangePicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ProfilePicture(radius: radius),
+        BlocBuilder<UserCubit, UserState>(
+          builder: (context, state) {
+            return ProfilePicture(radius: radius);
+          }
+        ),
         Positioned(
           right: size.width,
           bottom: size.height,

@@ -1,29 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pathway/cores/shared/caches/task_data.dart';
+import 'package:pathway/cores/shared/cubits/task_cubit/task_cubit.dart';
+import 'package:pathway/cores/shared/cubits/user_cubit/user_cubit.dart';
 import 'package:pathway/cores/utils/models/functions/dates.dart';
 import 'package:pathway/features/home_screen/presentation/ui/parts/actions.dart';
 import 'package:pathway/features/home_screen/presentation/ui/parts/date_filter.dart';
 import 'package:pathway/features/home_screen/presentation/ui/parts/user_info.dart';
 import 'package:pathway/features/home_screen/presentation/ui/widgets/tasks_list_state.dart';
-import '../../../../add_task_screen/presentation/add_task_screen.dart';
-import '../../../../profile_screen/presentation/profile_screen.dart';
 
-class HomeBody extends StatefulWidget {
+class HomeBody extends StatelessWidget {
   const HomeBody({super.key,});
 
-  @override
-  State<HomeBody> createState() => _HomeBodyState();
-}
-
-
-class _HomeBodyState extends State<HomeBody> {
-  int currentIndex = 0;
-  @override
-  void setState(VoidCallback fn) {
-    TaskData.getTasks();
-    super.setState(fn);
-  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,42 +20,43 @@ class _HomeBodyState extends State<HomeBody> {
       child: Column(
         spacing: 20.h,
         children: [
-          UserInfo(
-            onTap: () async {
-              await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ProfileScreen(),
-                ),
-              );
-              setState(() {});
-            },
+          BlocBuilder<UserCubit, UserState>(
+              builder: (context, state) {
+                return UserInfo(
+                  onTap: () async {
+                    context.read<UserCubit>().navigateToProfile(context);
+                  },
+                );
+              }
           ),
-          AppActions(
-            currentIndex: currentIndex,
-            onTap: () async {
-              await Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => AddTaskScreen()));
-              setState(() {});
-            },
+          BlocBuilder<TaskCubit, TaskState>(
+              builder: (context, state) {
+                context.read<TaskCubit>().outDate();
+                return AppActions(
+                  currentIndex: context.read<TaskCubit>().currentIndex,
+                  onTap: () async {
+                    context.read<TaskCubit>().navigateToAddTask(context);
+                  },
+                );
+              }
           ),
           Expanded(
             flex: 2,
             child: DateFilter(
               onChange: (selectedIndex){
-                setState(() {
-                  if(currentIndex != selectedIndex){
-                    currentIndex = selectedIndex;
-                  }
-                });
+                context.read<TaskCubit>().changeDate(selectedIndex);
               },
             ),
           ),
-          Expanded(
-            flex: 7,
-            child: TasksListState(
-              areTrues: TaskData.taskDate(dayDate().add(Duration(days: currentIndex))),
-            ),
+          BlocBuilder<TaskCubit, TaskState>(
+            builder: (context, state) {
+              return Expanded(
+                flex: 7,
+                child: TasksListState(
+                  areTrues: TaskData.taskDate(dayDate().add(Duration(days: context.read<TaskCubit>().currentIndex))),
+                ),
+              );
+            }
           ),
         ],
       ),

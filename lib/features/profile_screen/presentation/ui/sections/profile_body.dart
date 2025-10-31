@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pathway/cores/shared/constants/app_constants.dart';
+import 'package:pathway/cores/shared/cubits/user_cubit/user_cubit.dart';
 import 'package:pathway/cores/shared/ui/widgets/circle_icon.dart';
 import 'package:pathway/cores/utils/models/functions/show_bottom_sheet.dart';
 import 'package:pathway/cores/shared/ui/widgets/change_picture.dart';
@@ -9,17 +11,11 @@ import 'package:pathway/features/profile_screen/presentation/ui/widgets/change_n
 import '../../../../../cores/shared/caches/cache_helper.dart';
 import '../../../../../cores/shared/themes/app_text_styles.dart';
 
-class ProfileBody extends StatefulWidget {
+class ProfileBody extends StatelessWidget {
   const ProfileBody({super.key});
 
   @override
-  State<ProfileBody> createState() => _ProfileBodyState();
-}
-
-class _ProfileBodyState extends State<ProfileBody> {
-  @override
   Widget build(BuildContext context) {
-    TextEditingController setNameController = TextEditingController();
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
       child: Column(
@@ -35,9 +31,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                 ChangeImage(
                   isFirstSet: false,
                   onTap: (String? imgPath) {
-                    setState(() {
-                      CacheHelper.setData(AppConstants.appUserImage, imgPath);
-                    });
+                    context.read<UserCubit>().changeImage(imgPath);
                   },
                 ),
               );
@@ -58,12 +52,10 @@ class _ProfileBodyState extends State<ProfileBody> {
                   showCustomBottomSheet(
                     context,
                     ChangeName(
-                      setNameController: setNameController,
+                      setNameController: context.read<UserCubit>().setNameController,
                       name: CacheHelper.getData(AppConstants.appUserName),
                       onTap: (String name) {
-                        setState(() {
-                          CacheHelper.setData(AppConstants.appUserName, name);
-                        });
+                        context.read<UserCubit>().changeName(name);
                       },
                     ),
                   );

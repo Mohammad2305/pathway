@@ -19,8 +19,10 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       pushReplacementTo(
         context,
-        CacheHelper.getData(AppConstants.appUserName)==null && CacheHelper.getData(AppConstants.appUserImage)==null
-            ? SetUserInfoScreen() : HomeScreen()
+        CacheHelper.getData(AppConstants.appUserName) == null &&
+            CacheHelper.getData(AppConstants.appUserImage) == null
+        ? SetUserInfoScreen()
+        : HomeScreen(),
       );
     });
     super.initState();

@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pathway/cores/shared/constants/app_constants.dart';
-import '../../../../../cores/shared/caches/cache_helper.dart';
+import 'package:pathway/cores/shared/cubits/user_cubit/user_cubit.dart';
 import '../../../../../cores/shared/ui/widgets/profile_picture.dart';
 import '../../../../../cores/shared/ui/widgets/change_image.dart';
 import '../widgets/set_name.dart';
 
-class SetUserInfoBody extends StatefulWidget {
+class SetUserInfoBody extends StatelessWidget {
   const SetUserInfoBody({super.key});
 
-  @override
-  State<SetUserInfoBody> createState() => _SetUserInfoBodyState();
-}
-
-class _SetUserInfoBodyState extends State<SetUserInfoBody> {
-  TextEditingController setNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,22 +17,24 @@ class _SetUserInfoBodyState extends State<SetUserInfoBody> {
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 12.h,
         children: [
-          ProfilePicture(
-            radius: 100.sp,
+          BlocBuilder<UserCubit, UserState>(
+            builder: (context, state) {
+              return ProfilePicture(
+                radius: 100.sp,
+              );
+            }
           ),
           ChangeImage(
             isFirstSet: true,
             onTap: (String? imgPath) {
-              CacheHelper.setData(AppConstants.appUserImage, imgPath);
-              setState(() {});
+              context.read<UserCubit>().changeImage(imgPath);
             },
           ),
           Divider(),
           SetName(
-            setNameController: setNameController,
+            setNameController: context.read<UserCubit>().setNameController,
             onTap: (name) {
-              CacheHelper.setData(AppConstants.appUserName, name);
-              setState(() {});
+              context.read<UserCubit>().changeName(name);
             },
           ),
         ],
